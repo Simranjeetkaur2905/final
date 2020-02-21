@@ -7,6 +7,12 @@
     android:orientation="vertical"
     tools:context=".MainActivity">
 
+
+    <com.baoyz.swipemenulistview.SwipeMenuListView
+        android:id="@+id/list_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        />
     <Button
         android:id="@+id/add_btn"
         android:layout_width="55dp"
@@ -14,11 +20,7 @@
         android:layout_gravity="right"
         android:background="@drawable/ic_add_circle_outline_black_24dp"
         android:textColor="#fff"
-        />
-    <com.baoyz.swipemenulistview.SwipeMenuListView
-        android:id="@+id/list_view"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_marginTop="450dp"
         />
 
 
