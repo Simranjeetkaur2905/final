@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".detailofnotes">
+
+<TextView
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:text="Add Notes"
+    android:textColor="#fff"
+    android:background="#065"
+    android:textAlignment="center"
+    android:layout_marginTop="10dp"
+    android:textSize="25dp"/>
+
+
+        <EditText
+            android:id="@+id/E_category"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:layout_marginTop="10dp"
+            android:hint="Enter Category"/>
+
+
+    <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:layout_marginTop="5dp"
+            android:id="@+id/E_noteTitle"
+            android:hint="Enter Tittle"/>
+
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:layout_marginLeft="5dp"
+        android:layout_marginTop="5dp"
+        android:id="@+id/E_description"
+        android:hint="Description"
+        />
+
+
+    <ImageView
+        android:id="@+id/image_view"
+        android:layout_width="203dp"
+        android:layout_height="123dp"
+        android:layout_gravity="center"
+        android:background="@drawable/ic_photo_library_black_24dp"
+
+        android:scaleType="centerCrop" />
+    <Button
+        android:id="@+id/capture_image_btn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+
+        android:background="#065"
+        android:text="Capture Image"
+        style="@style/Base.Widget.AppCompat.Button.Colored"/>
+
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:background="#065"
+        android:text="Save"
+        android:textColor="#fff"
+        android:id="@+id/btn_save"/>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="Record"
+        android:background="#065"
+        android:textColor="#fff"
+        android:id="@+id/btn_record"
+        android:layout_weight="1"
+      />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="#065"
+        android:id="@+id/location_btn"
+        android:layout_marginLeft="2dp"
+        android:layout_marginTop="10dp"
+        android:text="Map"
+        android:textColor="#fff"
+        android:layout_weight="1"/>
+
+    </LinearLayout>
+
+
+</LinearLayout>
