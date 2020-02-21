@@ -19,28 +19,39 @@
         android:layout_marginHorizontal="40dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/record"/>
+        android:text="@string/record"
+        android:textColor="#fff"
+        android:background="#065"/>
 
     <Button
         android:id="@+id/btn_stop_record"
         android:layout_marginHorizontal="40dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/stop_recording"/>
+        android:text="@string/stop_recording"
+        android:textColor="#fff"
+        android:background="#065"
+        android:layout_marginTop="2dp"/>
 
     <Button
         android:id="@+id/btn_play"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="40dp"
-        android:text="@string/play"/>
+        android:text="@string/play"
+        android:textColor="#fff"
+        android:background="#065"
+        android:layout_marginTop="2dp"/>
 
     <Button
         android:id="@+id/btn_stop"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="40dp"
-        android:text="@string/stop"/>
+        android:text="@string/stop"
+        android:textColor="#fff"
+        android:background="#065"
+        android:layout_marginTop="2dp"/>
 
     <Button
         android:layout_width="wrap_content"
@@ -49,6 +60,7 @@
         android:background="@color/colorPrimary"
         android:text="SAVE"
         android:id="@+id/save_recording"
+        android:layout_marginTop="2dp"
         android:textColor="#fff"/>
 
 

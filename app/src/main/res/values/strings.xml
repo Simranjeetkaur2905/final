@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">projectnotes</string>
+    <string name="app_name">Notes</string>
     <string name="record_audio">RECORD</string>
     <string name="record">Start Recording</string>
     <string name="stop_recording">STOP RECORDING</string>
