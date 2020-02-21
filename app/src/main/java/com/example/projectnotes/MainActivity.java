@@ -60,20 +60,20 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 startActivity(intent);
             }
         });
-        SwipeMenuCreator swipeMenuCreator = new SwipeMenuCreator() {
-            @Override
-            public void create(SwipeMenu menu) {
-
-                SwipeMenuItem delete = new SwipeMenuItem(getApplicationContext());
-
-                delete.setTitle("DELETE");
-                delete.setIcon(R.drawable.ic_delete_black_24dp);
-                delete.setBackground(new ColorDrawable(Color.parseColor("#FFF71B05")));
-                delete.setWidth(250);
-                menu.addMenuItem(delete);
-            }
-        };
-        listView.setMenuCreator(swipeMenuCreator);
+//        SwipeMenuCreator swipeMenuCreator = new SwipeMenuCreator() {
+//            @Override
+//            public void create(SwipeMenu menu) {
+//
+//                SwipeMenuItem delete = new SwipeMenuItem(getApplicationContext());
+//
+//                delete.setTitle("DELETE");
+//                delete.setIcon(R.drawable.ic_delete_black_24dp);
+//                delete.setBackground(new ColorDrawable(Color.parseColor("#FFF71B05")));
+//                delete.setWidth(250);
+//                menu.addMenuItem(delete);
+//            }
+//        };
+//        listView.setMenuCreator(swipeMenuCreator);
 
 
 //        listView.setOnMenuItemClickListener(new SwipeMenuListView.OnMenuItemClickListener() {
@@ -94,7 +94,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 //            }
 //        });
 
-        listView.setSwipeDirection(SwipeMenuListView.DIRECTION_LEFT);
+       // listView.setSwipeDirection(SwipeMenuListView.DIRECTION_LEFT);
     }
 
 
