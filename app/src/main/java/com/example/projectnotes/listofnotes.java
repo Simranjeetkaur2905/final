@@ -4,27 +4,40 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.database.Cursor;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.SearchView;
+
+import com.baoyz.swipemenulistview.SwipeMenu;
+import com.baoyz.swipemenulistview.SwipeMenuCreator;
+import com.baoyz.swipemenulistview.SwipeMenuItem;
+import com.baoyz.swipemenulistview.SwipeMenuListView;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class listofnotes extends AppCompatActivity implements View.OnClickListener {
 
-    SearchView searchoption;
-    List<Notesdata> filter;
-    ListView listView;
+    EditText searchoption;
+    //List<Notesdata> filter;
+ //   ListView listView;
+    SwipeMenuListView listView;
     DatabaseNotes mDatabase;
     public  static List<String> notesTitle;
     public  static List<Notesdata> AllData;
+    List<Notesdata> searchList = new ArrayList<>();
+    List<String> search_list = new ArrayList<>();
 
-    Button delete;
+
 
 
     String category_name = "";
@@ -35,59 +48,54 @@ public class listofnotes extends AppCompatActivity implements View.OnClickListen
         setContentView(R.layout.activity_listofnotes);
         searchoption = findViewById(R.id.SearchOption);
 
-        delete = findViewById(R.id.del_btn);
-
-        searchoption.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
-            @Override
-            public boolean onQueryTextSubmit(String query) {
-                return false;
-            }
-
-            @Override
-            public boolean onQueryTextChange(String newText) {
-                if(!newText.isEmpty()){
-                    filter.clear();
-                    for(int i =0;i<AllData.size();i++){
-
-
-                        Notesdata getdata = AllData.get(i);
-                        if(getdata.notesTitle.contains(newText)){
-
-                            filter.add(getdata);
-
-                        }
-
-                    }
-                    arrayAdapter = new ArrayAdapter(listofnotes.this, android.R.layout.simple_list_item_1,filter);
-                    listView.setAdapter(arrayAdapter);
-                }
-
-                if(newText.isEmpty()){
-
-                    arrayAdapter = new ArrayAdapter(listofnotes.this, android.R.layout.simple_list_item_1,notesTitle);
-                    listView.setAdapter(arrayAdapter);
-
-                }
-                return false;
-            }
-        });
-
-
-
-
-
         Intent i = getIntent();
         category_name = i.getStringExtra("CAT");
 
 
-        listView = findViewById(R.id.Notes_listview);
+        listView = findViewById(R.id.Notes_listView);
         mDatabase = new DatabaseNotes(this);
 
         findViewById(R.id.add_note).setOnClickListener(this);
+        searchoption.addTextChangedListener(new TextWatcher() {
+                                                @Override
+                                                public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+                                                }
+
+                                                @Override
+                                                public void onTextChanged(CharSequence s, int start, int before, int count) {
+                      String searchtext = s.toString();
+                      if(!searchtext.isEmpty()) {
+                          for (Notesdata notesdata : AllData)
+                              if (notesdata.getNotesTitle().contains(searchtext)) {
+                                  searchList.add(notesdata);
+                                  search_list.add(notesdata.getNotesTitle());
+
+                              }
+                      }
+                              else {
+                                  searchList.addAll(AllData);
+                                  for (Notesdata notesdata:AllData){
+                                      search_list.add(notesdata.getNotesTitle());
+                              }
+
+                      }
+//                              arrayAdapter = new ArrayAdapter(listofnotes.this,android.R.layout.simple_list_item_1, search_list);
+//                              listView.setAdapter(arrayAdapter);
+                                                    arrayAdapter.notifyDataSetChanged();
+                                                }
+
+                                                @Override
+                                                public void afterTextChanged(Editable s) {
+
+                                                }
+                                            }
+        );
 
         notesTitle = new ArrayList<>();
         AllData = new ArrayList<>();
-        loadNotesTitle();
+        //loadNotesTitle();
+
 
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -100,6 +108,42 @@ public class listofnotes extends AppCompatActivity implements View.OnClickListen
 
             }
         });
+
+        SwipeMenuCreator swipeMenuCreator = new SwipeMenuCreator() {
+            @Override
+            public void create(SwipeMenu menu) {
+
+                SwipeMenuItem delete = new SwipeMenuItem(getApplicationContext());
+
+                delete.setTitle("DELETE");
+                delete.setIcon(R.drawable.ic_delete_black_24dp);
+                delete.setBackground(new ColorDrawable(Color.parseColor("#FFF71B05")));
+                delete.setWidth(250);
+                menu.addMenuItem(delete);
+            }
+        };
+        listView.setMenuCreator(swipeMenuCreator);
+
+
+        listView.setOnMenuItemClickListener(new SwipeMenuListView.OnMenuItemClickListener() {
+            @Override
+            public boolean onMenuItemClick(int position, SwipeMenu menu, int index) {
+
+                if (index == 0){
+
+
+                    Notesdata note = AllData.get(position);
+                    int id = note.getId();
+                    if(mDatabase.deleteNote(id))
+                        AllData.remove(position);
+//
+                    loadNotesTitle();
+                }
+                return true;
+            }
+        });
+
+        listView.setSwipeDirection(SwipeMenuListView.DIRECTION_LEFT);
     }
 
     @Override

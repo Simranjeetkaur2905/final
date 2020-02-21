@@ -17,15 +17,21 @@
         android:textColor="#fff"
 
         />
-
-    <ListView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+    <com.baoyz.swipemenulistview.SwipeMenuListView
         android:id="@+id/list_view"
-        android:background="#fff"
-        android:layout_weight="1">
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        />
 
-    </ListView>
+
+<!--    <ListView-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:id="@+id/list_view"-->
+<!--        android:background="#fff"-->
+<!--        android:layout_weight="1">-->
+
+<!--    </ListView>-->
 
 
 </LinearLayout>
